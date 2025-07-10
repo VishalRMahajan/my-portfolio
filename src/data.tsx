@@ -31,11 +31,10 @@ export const DATA = {
     {
       company: "The Good Game Theory",
       href: "https://www.thegoodgametheory.com/",
-      badges: [],
+      Skills: ["NodeJs", "Express"],
       location: "Remote",
       title: "Backend Developer Intern",
-      logoUrl:
-        "https://cdn.prod.website-files.com/676c6d974fac45287620a12f/67a92a9cc9f7303823927011_Borcelle__4_-removebg%20(1).png",
+      logoUrl: "/work-logo/TheGoodGameTheory.png",
       start: "May 2025",
       end: "Present",
       description: "Joined Just Now, Will update soon.",
@@ -45,63 +44,43 @@ export const DATA = {
     {
       description: "AI-Powered Accident Detection System",
       title: "Nirikshan",
-      src: "https://github.com/user-attachments/assets/1e7ceab6-443b-488d-af8f-ed17ec77cce0",
       videosrc: "",
       githubLink: "https://github.com/VishalRMahajan/Nirikshan",
       deployed: false,
       deployedlink: "",
-
-      content: () => {
-        return (
-          <p>
-            Built an AI-driven system using YOLOv11 to detect vehicle collisions
-            in real-time from CCTV footage, achieving 99% mAP@50. Integrated
-            instant WebSocket alerts and a dashboard for incident tracking and
-            emergency response coordination.
-          </p>
-        );
-      },
+      content: [
+        "Built a real-time accident detection system using YOLOv11 integrated with a FastAPI WebSocket server to stream CCTV-based alerts to a live dashboard.",
+        "Achieved over 90% accuracy across mAP, precision, and recall by applying advanced data augmentation and hyperparameter tuning.",
+        "Designed a full-stack monitoring platform with a 3-stage incident workflow (Verify → Ongoing → Resolved), enabling real-time coordination between dashboard operators and field responders using PostgreSQL, WebSockets, and FastAPI.",
+      ],
     },
     {
       description: "Just run npx vishalrmahajan and see it in action",
       title: "NPX VishalRMahajan",
-      src: "/npx-vishalrmahajan.png",
       videosrc: "https://youtu.be/aqoyMsZe2K0",
       githubLink: "https://github.com/VishalRMahajan/npx-vishalrmahajan",
       deployed: false,
       deployedlink: "",
-      content: () => {
-        return (
-          <p>
-            npx vishalrmahajan is a one-command, interactive portfolio that runs
-            entirely in your terminal. Launching it with npx instantly opens a
-            colorful, ASCII-styled UI where you can browse my portfolio through
-            typed commands or keyboard navigation
-          </p>
-        );
-      },
+      content: [
+        "Created a one-command interactive portfolio that runs entirely in the terminal using the npx package runner.",
+        "Designed a colorful, keyboard-navigable CLI interface, offering a unique way to browse my projects, experience, and contact info.",
+        "Built with modern terminal libraries like chalk for colors, cfonts for ASCII art, and terminal-kit for interactive elements.",
+        "Features real-time navigation, command interface inside it, and a seamless user experience right from the command line.",
+      ],
     },
     {
       description: "MERN-Based Food Ordering Platform",
       title: "Nivala",
-      src: "/nivala.png",
       videosrc: "https://youtu.be/3Axl_S_9uqA",
       githubLink: "https://github.com/VishalRMahajan/Nivala",
       deployed: true,
-      deployedlink: "https://nivala.vishalrmahajan.com",
-      content: () => {
-        return (
-          <p>
-            Architected a complete MERN stack solution featuring a
-            customer-facing food ordering portal and an admin dashboard for
-            real-time management of food items, orders, and user data.
-            Integrated JWT-based authentication for secure user sessions and
-            implemented RESTful APIs for seamless data management, optimizing
-            frontend API calls to enhance load times and create a more
-            responsive user experience.
-          </p>
-        );
-      },
+      deployedlink: "https://nivala.vishalrmahajan.in",
+      content: [
+        "Developed a complete food ordering platform with a customer-facing site, an admin dashboard, and a backend API using a 3-tier microservices architecture.",
+        "Implemented JWT authentication, Role-Based Access Control (RBAC), and a structured order management system for secure and scalable user handling.",
+        "Built a responsive SPA using React, React Router, and modular components, with mobile-first design.",
+        "Developed backend features like password hashing (bcrypt), shopping cart persistence, promo code validation, and middleware-secured API endpoints with full CORS support.",
+      ],
     },
   ],
 } as const;

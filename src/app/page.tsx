@@ -1,22 +1,21 @@
 import { Text } from "@/components/retroui/Text";
 import Hero from "@/components/hero";
+import SkillsGrid from "@/components/skills-grid";
+import WorkExperience from "@/components/work-experience";
+import Projects from "@/components/projects";
 
 export default function Page() {
   return (
-    <main className="flex flex-col md:flex-row h-screen">
-      <div
-        className="md:sticky md:top-0 md:h-screen md:flex md:flex-col md:justify-between 
-                  md:w-[320px] lg:w-[380px] p-6 pb-8 md:pb-6"
-      >
+    <main className="min-h-screen">
+      <div className="max-w-4xl mx-auto space-y-16 p-6">
         <Hero />
-      </div>
 
-      <div className="md:flex-1 md:overflow-y-auto space-y-16 p-6 md:p-8 lg:p-10">
         <section id="skills">
           <div className="flex min-h-0 flex-col gap-y-6">
             <Text as="h3" className="font-bold mb-6 text-white">
               Stuff I Built With
             </Text>
+            <SkillsGrid />
           </div>
         </section>
 
@@ -24,14 +23,16 @@ export default function Page() {
           <Text as="h3" className="font-bold mb-6 text-white">
             Where I&apos;ve Worked
           </Text>
-          <div className="space-y-6"></div>
+          <div className="space-y-6">
+            <WorkExperience />
+          </div>
         </section>
 
-        <section id="Projects">
+        <section id="projects">
           <Text as="h3" className="font-bold mb-6 text-white">
             Stuff I&apos;ve Built
           </Text>
-          <div></div>
+          <Projects />
         </section>
       </div>
     </main>
