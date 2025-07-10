@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
-    "build": " next build",
+    "build": "NEXT_PUBLIC_VERCEL_DEPLOYMENT_TIME=$(date +%s%3N) next build",
     "start": "next start",
     "lint": "next lint"
   },
