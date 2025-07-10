@@ -5,6 +5,7 @@ import "./globals.css";
 import Footer from "@/components/Footer";
 import LoadingScreen from "@/components/loading";
 import { useState, useEffect } from "react";
+import OnekoCat from "@/components/onekaCat";
 
 const archivoBlack = Archivo_Black({
   subsets: ["latin"],
@@ -82,6 +83,7 @@ export default function RootLayout({
             <div className="fixed inset-0 bg-black/40 z-[-15]" />
 
             <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 lg:py-16">
+              <OnekoCat />
               {children}
             </div>
             <Footer />

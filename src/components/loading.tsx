@@ -21,7 +21,7 @@ export default function LoadingScreen({
 
   useEffect(() => {
     let animationFrameId: number;
-    let img = new window.Image();
+    const img = new window.Image();
     img.src = imgSrc;
     img.onload = () => {
       if (!canvasRef.current) return;
@@ -87,7 +87,7 @@ export default function LoadingScreen({
 
       let revealed = 0;
       function animate() {
-        let revealPerFrame = Math.max(1, Math.ceil(totalSquares / 60)); // slower
+        const revealPerFrame = Math.max(1, Math.ceil(totalSquares / 60));
         if (!ctx) return;
         for (
           let i = 0;
