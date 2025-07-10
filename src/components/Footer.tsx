@@ -1,46 +1,28 @@
-"use client";
+function getLastUpdatedString() {
+  const ts = process.env.NEXT_PUBLIC_VERCEL_DEPLOYMENT_TIME;
 
-import { useEffect, useState } from "react";
+  if (ts && !isNaN(Number(ts))) {
+    return new Date(Number(ts)).toLocaleString("en-IN", {
+      timeZone: "Asia/Kolkata",
+      year: "numeric",
+      month: "short",
+      day: "2-digit",
+      hour: "2-digit",
+      minute: "2-digit",
+      second: "2-digit",
+      hour12: false,
+    });
+  }
+  return "N/A";
+}
 
 export default function Footer() {
-  const [lastUpdated, setLastUpdated] = useState<string | null>(null);
-
-  useEffect(() => {
-    if (process.env.NEXT_PUBLIC_VERCEL_DEPLOYMENT_TIME) {
-      setLastUpdated(
-        new Date(
-          Number(process.env.NEXT_PUBLIC_VERCEL_DEPLOYMENT_TIME)
-        ).toLocaleString("en-IN", {
-          timeZone: "Asia/Kolkata",
-          year: "numeric",
-          month: "short",
-          day: "2-digit",
-          hour: "2-digit",
-          minute: "2-digit",
-          second: "2-digit",
-          hour12: false,
-        })
-      );
-    } else {
-      setLastUpdated(
-        new Date().toLocaleString("en-IN", {
-          timeZone: "Asia/Kolkata",
-          year: "numeric",
-          month: "short",
-          day: "2-digit",
-          hour: "2-digit",
-          minute: "2-digit",
-          second: "2-digit",
-          hour12: false,
-        })
-      );
-    }
-  }, []);
+  const lastUpdated = getLastUpdatedString();
 
   return (
-    <footer className="w-full mt-12 flex flex-col justify-center items-center py-4 font-mono text-base tracking-wide select-none text-white">
+    <footer className="w-full mt-12 flex flex-col justify-center items-center py-4 font-mono text-sm sm:text-base tracking-wide select-none text-white px-2">
       <span
-        className="flex items-center gap-2 font-bold"
+        className="flex flex-wrap items-center gap-1.5 font-bold text-center"
         style={{ textShadow: "2px 2px 0 #000" }}
       >
         Made with
@@ -50,13 +32,18 @@ export default function Footer() {
         >
           ♥
         </span>
-        <a href="https://vishalrmahajan.in">by Vishal Rajesh Mahajan</a>
+        <a
+          href="https://vishalrmahajan.in"
+          className="underline underline-offset-2"
+        >
+          by Vishal Rajesh Mahajan
+        </a>
       </span>
       <span
-        className="text-xs mt-1 opacity-70"
+        className="text-xs mt-1 opacity-70 text-center break-all"
         style={{ textShadow: "1px 1px 0 #000" }}
       >
-        Last updated: {lastUpdated || "—"}
+        Last updated: {lastUpdated}
       </span>
     </footer>
   );
