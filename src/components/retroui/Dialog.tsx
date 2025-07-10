@@ -27,7 +27,7 @@ const overlayVariants = cva(
     defaultVariants: {
       variant: "default",
     },
-  },
+  }
 );
 
 interface IDialogBackgroupProps
@@ -45,7 +45,7 @@ const DialogBackdrop = React.forwardRef<HTMLDivElement, IDialogBackgroupProps>(
         {...props}
       />
     );
-  },
+  }
 );
 DialogBackdrop.displayName = "DialogBackdrop";
 
@@ -80,7 +80,7 @@ const dialogVariants = cva(
     defaultVariants: {
       size: "auto",
     },
-  },
+  }
 );
 
 interface IDialogContentProps
@@ -114,16 +114,17 @@ const DialogContent = React.forwardRef<HTMLDivElement, IDialogContentProps>(
         </ReactDialog.Content>
       </ReactDialog.Portal>
     );
-  },
+  }
 );
 DialogContent.displayName = "DialogContent";
 
-interface IDialogDescriptionProps extends HTMLAttributes<HTMLDivElement> {}
+type DialogDescriptionProps = HTMLAttributes<HTMLDivElement>;
+
 const DialogDescription = ({
   children,
   className,
   ...props
-}: IDialogDescriptionProps) => {
+}: DialogDescriptionProps) => {
   return (
     <ReactDialog.Description className={cn(className)} {...props}>
       {children}
@@ -146,7 +147,7 @@ const dialogFooterVariants = cva(
     defaultVariants: {
       position: "fixed",
     },
-  },
+  }
 );
 
 export interface IDialogFooterProps
@@ -186,7 +187,7 @@ const dialogHeaderVariants = cva(
       variant: "default",
       position: "static",
     },
-  },
+  }
 );
 
 const DialogHeaderDefaultLayout = ({ children }: { children: ReactNode }) => {

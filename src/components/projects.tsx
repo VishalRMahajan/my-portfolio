@@ -7,11 +7,23 @@ import { Dialog } from "@/components/retroui/Dialog";
 import { DATA } from "@/data";
 import { Github, ExternalLink, Play, X } from "lucide-react";
 
+interface ProjectType {
+  readonly title: string;
+  readonly description: string;
+  readonly content: readonly string[];
+  readonly githubLink: string;
+  readonly videosrc?: string;
+  readonly deployed?: boolean;
+  readonly deployedlink?: string;
+}
+
 const Projects = () => {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
-  const [selectedProject, setSelectedProject] = useState<any>(null);
+  const [selectedProject, setSelectedProject] = useState<ProjectType | null>(
+    null
+  );
 
-  const openVideoDialog = (project: any) => {
+  const openVideoDialog = (project: ProjectType) => {
     if (project.videosrc) {
       setSelectedProject(project);
       setIsDialogOpen(true);
@@ -28,44 +40,39 @@ const Projects = () => {
       border: "border-blue-500",
       bg: "bg-blue-500/10",
       accent: "text-blue-400",
-      glow: "shadow-blue-500/20",
     },
     {
       border: "border-green-500",
       bg: "bg-green-500/10",
       accent: "text-green-400",
-      glow: "shadow-green-500/20",
     },
     {
       border: "border-purple-500",
       bg: "bg-purple-500/10",
       accent: "text-purple-400",
-      glow: "shadow-purple-500/20",
     },
     {
       border: "border-orange-500",
       bg: "bg-orange-500/10",
       accent: "text-orange-400",
-      glow: "shadow-orange-500/20",
     },
     {
       border: "border-pink-500",
       bg: "bg-pink-500/10",
       accent: "text-pink-400",
-      glow: "shadow-pink-500/20",
     },
   ];
 
   return (
     <div className="space-y-6">
       <div className="space-y-6">
-        {DATA.projects.map((project, index) => {
+        {DATA.projects.map((project: ProjectType, index) => {
           const colors = colorSchemes[index % colorSchemes.length];
 
           return (
             <Card
               key={index}
-              className={`border-2 ${colors.border} ${colors.bg} backdrop-blur-sm hover:translate-y-[-2px] transition-all hover:shadow-lg ${colors.glow} relative overflow-hidden shadow-xl`}
+              className={`border-2 ${colors.border} ${colors.bg} backdrop-blur-sm hover:translate-y-[-2px] transition-all hover:shadow-lg shadow-black relative overflow-hidden shadow-xl`}
             >
               <div
                 className={`absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-${
@@ -110,7 +117,7 @@ const Projects = () => {
                         href={project.githubLink}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1 bg-gray-500/20 text-gray-300 px-2 py-1 text-xs border border-gray-500/30 hover:bg-gray-500/30 hover:text-white transition-colors cursor-pointer font-mono shadow-sm"
+                        className="inline-flex items-center gap-1 bg-gray-500 text-white px-2 py-1 text-xs border border-gray-500/30 hover:bg-gray-500/30 hover:text-white transition-colors cursor-pointer font-mono shadow-sm"
                       >
                         <Github className="w-3 h-3" />
                         GitHub
@@ -119,7 +126,7 @@ const Projects = () => {
                       {project.videosrc && (
                         <button
                           onClick={() => openVideoDialog(project)}
-                          className="inline-flex items-center gap-1 bg-red-500/20 text-red-400 px-2 py-1 text-xs border border-red-500/30 hover:bg-red-500/30 hover:text-red-300 transition-colors cursor-pointer font-mono shadow-sm"
+                          className="inline-flex items-center gap-1 bg-red-500 text-white px-2 py-1 text-xs border border-red-500/30 hover:bg-red-500/30 hover:text-red-300 transition-colors cursor-pointer font-mono shadow-sm"
                         >
                           <Play className="w-3 h-3" />
                           Video
@@ -131,7 +138,7 @@ const Projects = () => {
                           href={project.deployedlink}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="inline-flex items-center gap-1 bg-green-500/20 text-green-400 px-2 py-1 text-xs border border-green-500/30 hover:bg-green-500/30 hover:text-green-300 transition-colors cursor-pointer font-mono shadow-sm"
+                          className="inline-flex items-center gap-1 bg-green-500 text-white px-2 py-1 text-xs border border-green-500/30 hover:bg-green-500/30 hover:text-green-300 transition-colors cursor-pointer font-mono shadow-sm"
                         >
                           <ExternalLink className="w-3 h-3" />
                           Live
@@ -173,7 +180,7 @@ const Projects = () => {
                       href={project.githubLink}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1 bg-gray-500/20 text-gray-300 px-2 py-1 text-xs border border-gray-500/30 hover:bg-gray-500/30 hover:text-white transition-colors cursor-pointer font-mono shadow-sm"
+                      className="inline-flex items-center gap-1 bg-gray-500 text-white px-2 py-1 text-xs border border-gray-500/30 hover:bg-gray-500/30 hover:text-white transition-colors cursor-pointer font-mono shadow-sm"
                     >
                       <Github className="w-3 h-3" />
                       GitHub
@@ -182,7 +189,7 @@ const Projects = () => {
                     {project.videosrc && (
                       <button
                         onClick={() => openVideoDialog(project)}
-                        className="inline-flex items-center gap-1 bg-red-500/20 text-red-400 px-2 py-1 text-xs border border-red-500/30 hover:bg-red-500/30 hover:text-red-300 transition-colors cursor-pointer font-mono shadow-sm"
+                        className="inline-flex items-center gap-1 bg-red-500 text-white px-2 py-1 text-xs border border-red-500/30 hover:bg-red-500/30 hover:text-red-300 transition-colors cursor-pointer font-mono shadow-sm"
                       >
                         <Play className="w-3 h-3" />
                         Video
@@ -194,7 +201,7 @@ const Projects = () => {
                         href={project.deployedlink}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1 bg-green-500/20 text-green-400 px-2 py-1 text-xs border border-green-500/30 hover:bg-green-500/30 hover:text-green-300 transition-colors cursor-pointer font-mono shadow-sm"
+                        className="inline-flex items-center gap-1 bg-green-500 text-white px-2 py-1 text-xs border border-green-500/30 hover:bg-green-500/30 hover:text-green-300 transition-colors cursor-pointer font-mono shadow-sm"
                       >
                         <ExternalLink className="w-3 h-3" />
                         Live

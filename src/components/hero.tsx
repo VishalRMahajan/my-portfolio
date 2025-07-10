@@ -1,19 +1,47 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Avatar } from "@/components/retroui/Avatar";
 import { Text } from "@/components/retroui/Text";
 import { Button } from "@/components/retroui/Button";
 import { Badge } from "@/components/retroui/Badge";
-import { FileCode } from "lucide-react";
+import { FileCode, Clock, MapPin } from "lucide-react";
 import { DATA } from "@/data";
+import { getCalApi } from "@calcom/embed-react";
 
 const Hero = () => {
   const [mounted, setMounted] = useState(false);
+  const [mumbaiTime, setMumbaiTime] = useState("");
 
   useEffect(() => {
     setMounted(true);
+
+    const updateMumbaiTime = () => {
+      const now = new Date();
+      const mumbaiTime = new Intl.DateTimeFormat("en-US", {
+        timeZone: "Asia/Kolkata",
+        hour: "2-digit",
+        minute: "2-digit",
+        hour12: false,
+      }).format(now);
+      setMumbaiTime(mumbaiTime);
+    };
+
+    updateMumbaiTime();
+    const interval = setInterval(updateMumbaiTime, 60000);
+    return () => clearInterval(interval);
+  }, []);
+
+  useEffect(() => {
+    (async function () {
+      const cal = await getCalApi({ namespace: "30min" });
+      cal("ui", {
+        theme: "dark",
+        hideEventTypeDetails: false,
+        layout: "month_view",
+      });
+    })();
   }, []);
 
   return (
@@ -21,6 +49,43 @@ const Hero = () => {
       <AnimatePresence>
         {mounted && (
           <>
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              className="w-full flex justify-between items-center mb-6"
+            >
+              <motion.div
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4 }}
+                className="flex items-center gap-3"
+              >
+                <Badge
+                  className="inline-flex items-center gap-1.5 bg-blue-500 text-white px-2 py-0.5 border-2 border-black shadow-sm font-mono"
+                  style={{ borderRadius: "0px" }}
+                >
+                  <Clock className="w-3 h-3" />
+                  <span>{mumbaiTime}</span>
+                </Badge>
+                <Badge
+                  className="inline-flex items-center gap-1.5 bg-purple-500 text-white px-2 py-0.5 border-2 border-black shadow-sm font-mono"
+                  style={{ borderRadius: "0px" }}
+                >
+                  <MapPin className="w-3 h-3" />
+                  <span>Mumbai</span>
+                </Badge>
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4, delay: 0.1 }}
+                className="text-xs text-gray-400 font-mono"
+              >
+                GMT+5:30
+              </motion.div>
+            </motion.div>
+
             <motion.div
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
@@ -42,7 +107,7 @@ const Hero = () => {
               transition={{ delay: 0.3, duration: 0.5 }}
             >
               <Text as="h3" className="mb-1 text-lg font-medium text-white">
-                Hey 👋, I'm
+                Hey 👋, I&apos;m
               </Text>
               <Text as="h2" className="text-4xl font-bold mb-6 text-white">
                 {DATA.contact.name}
@@ -56,8 +121,11 @@ const Hero = () => {
               className="mb-8"
             >
               <Text className="text-base text-justify text-white">
-                i'm 20. final year dev. I build with{" "}
-                <Badge className="inline-flex items-center gap-1.5 bg-yellow-400 text-black px-2 py-0.5 rounded border-2 border-black shadow-sm">
+                i&apos;m 20. final year dev. I build with{" "}
+                <Badge
+                  className="inline-flex items-center gap-1.5 bg-yellow-400 text-black px-2 py-0.5 border-2 border-black shadow-sm font-mono"
+                  style={{ borderRadius: "0px" }}
+                >
                   <img
                     src="https://skillicons.dev/icons?i=js"
                     alt="JavaScript"
@@ -67,7 +135,10 @@ const Hero = () => {
                   JavaScript
                 </Badge>{" "}
                 and{" "}
-                <Badge className="inline-flex items-center gap-1.5 bg-blue-600 text-white px-2 py-0.5 rounded border-2 border-black shadow-sm">
+                <Badge
+                  className="inline-flex items-center gap-1.5 bg-blue-600 text-white px-2 py-0.5 border-2 border-black shadow-sm font-mono"
+                  style={{ borderRadius: "0px" }}
+                >
                   <img
                     src="https://skillicons.dev/icons?i=py"
                     alt="Python"
@@ -80,6 +151,7 @@ const Hero = () => {
                 work.
               </Text>
             </motion.div>
+
             <motion.div
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
@@ -91,6 +163,7 @@ const Hero = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="border-2 border-black p-1.5 shadow-md hover:translate-y-0.5 hover:shadow-none transition-all bg-gray-800"
+                style={{ borderRadius: "0px" }}
               >
                 <img
                   src="https://skillicons.dev/icons?i=github"
@@ -104,6 +177,7 @@ const Hero = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="border-2 border-black p-1.5 shadow-md hover:translate-y-0.5 hover:shadow-none transition-all bg-blue-600"
+                style={{ borderRadius: "0px" }}
               >
                 <img
                   src="https://skillicons.dev/icons?i=linkedin"
@@ -117,6 +191,7 @@ const Hero = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="border-2 border-black p-1.5 shadow-md hover:translate-y-0.5 hover:shadow-none transition-all bg-white"
+                style={{ borderRadius: "0px" }}
               >
                 <img
                   src="https://leetcode.com/favicon.ico"
@@ -130,6 +205,7 @@ const Hero = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="border-2 border-black p-1.5 shadow-md hover:translate-y-0.5 hover:shadow-none transition-all bg-[#1d9bf0]"
+                style={{ borderRadius: "0px" }}
               >
                 <img
                   src="https://skillicons.dev/icons?i=twitter"
@@ -143,6 +219,7 @@ const Hero = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="border-2 border-black p-1.5 shadow-md hover:translate-y-0.5 hover:shadow-none transition-all bg-[#242938]"
+                style={{ borderRadius: "0px" }}
               >
                 <img
                   src="https://skillicons.dev/icons?i=gmail"
@@ -157,7 +234,7 @@ const Hero = () => {
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.5, duration: 0.5 }}
-              className="flex flex-wrap items-center justify-center gap-4  w-full"
+              className="flex flex-wrap items-center justify-center gap-4 w-full"
             >
               <a
                 href={DATA.contact.social.Resume}
@@ -166,12 +243,24 @@ const Hero = () => {
               >
                 <Button
                   size="lg"
-                  className="flex-1 max-w-[180px] bg-white text-black border-2 border-black shadow-md font-bold flex items-center justify-center gap-2 py-2 px-4 hover:bg-white/75 hover:translate-y-0.5 hover:shadow-none transition-all"
+                  className="bg-white text-black border-2 border-black shadow-md font-bold flex items-center justify-center gap-2 py-2 px-4 hover:bg-white/75 hover:translate-y-0.5 hover:shadow-none transition-all"
+                  style={{ borderRadius: "0px" }}
                 >
                   <FileCode className="w-5 h-5" />
                   Resume
                 </Button>
               </a>
+
+              <Button
+                size="lg"
+                className="bg-green-500 text-white border-2 border-black shadow-md font-bold flex items-center justify-center gap-2 py-2 px-4 hover:bg-green-400 hover:translate-y-0.5 hover:shadow-none transition-all"
+                style={{ borderRadius: "0px" }}
+                data-cal-namespace="30min"
+                data-cal-link="vishalrmahajan/30min"
+                data-cal-config='{"layout":"month_view","theme":"dark"}'
+              >
+                Get in Touch
+              </Button>
             </motion.div>
           </>
         )}
