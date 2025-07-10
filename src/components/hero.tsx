@@ -9,6 +9,7 @@ import { Badge } from "@/components/retroui/Badge";
 import { FileCode, Clock, MapPin } from "lucide-react";
 import { DATA } from "@/data";
 import { getCalApi } from "@calcom/embed-react";
+import Image from "next/image";
 
 const Hero = () => {
   const [mounted, setMounted] = useState(false);
@@ -23,13 +24,14 @@ const Hero = () => {
         timeZone: "Asia/Kolkata",
         hour: "2-digit",
         minute: "2-digit",
+        second: "2-digit",
         hour12: false,
       }).format(now);
       setMumbaiTime(mumbaiTime);
     };
 
     updateMumbaiTime();
-    const interval = setInterval(updateMumbaiTime, 60000);
+    const interval = setInterval(updateMumbaiTime, 1000);
     return () => clearInterval(interval);
   }, []);
 
@@ -106,14 +108,30 @@ const Hero = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3, duration: 0.5 }}
             >
-              <Text as="h3" className="mb-1 text-lg font-medium text-white">
-                Hey 👋, I&apos;m
+              <Text
+                as="h2"
+                className="mb-1 text-lg font-medium text-white flex items-center justify-center gap-2"
+              >
+                Hey
+                <motion.span
+                  style={{ display: "inline-block" }}
+                  animate={{
+                    rotate: [0, 20, -10, 20, -5, 0],
+                  }}
+                  transition={{
+                    repeat: Infinity,
+                    duration: 1.6,
+                    ease: "easeInOut",
+                  }}
+                >
+                  👋
+                </motion.span>
+                , I&apos;m
               </Text>
               <Text as="h2" className="text-4xl font-bold mb-6 text-white">
                 {DATA.contact.name}
               </Text>
             </motion.div>
-
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -126,9 +144,11 @@ const Hero = () => {
                   className="inline-flex items-center gap-1.5 bg-yellow-400 text-black px-2 py-0.5 border-2 border-black shadow-sm font-mono"
                   style={{ borderRadius: "0px" }}
                 >
-                  <img
+                  <Image
                     src="https://skillicons.dev/icons?i=js"
                     alt="JavaScript"
+                    width={16}
+                    height={16}
                     className="w-4 h-4"
                     style={{ imageRendering: "pixelated" }}
                   />
@@ -139,9 +159,11 @@ const Hero = () => {
                   className="inline-flex items-center gap-1.5 bg-blue-600 text-white px-2 py-0.5 border-2 border-black shadow-sm font-mono"
                   style={{ borderRadius: "0px" }}
                 >
-                  <img
+                  <Image
                     src="https://skillicons.dev/icons?i=py"
                     alt="Python"
+                    width={16}
+                    height={16}
                     className="w-4 h-4"
                     style={{ imageRendering: "pixelated" }}
                   />
@@ -165,9 +187,11 @@ const Hero = () => {
                 className="border-2 border-black p-1.5 shadow-md hover:translate-y-0.5 hover:shadow-none transition-all bg-gray-800"
                 style={{ borderRadius: "0px" }}
               >
-                <img
+                <Image
                   src="https://skillicons.dev/icons?i=github"
                   alt="GitHub"
+                  width={16}
+                  height={16}
                   className="w-7 h-7"
                   style={{ imageRendering: "pixelated" }}
                 />
@@ -179,9 +203,11 @@ const Hero = () => {
                 className="border-2 border-black p-1.5 shadow-md hover:translate-y-0.5 hover:shadow-none transition-all bg-blue-600"
                 style={{ borderRadius: "0px" }}
               >
-                <img
+                <Image
                   src="https://skillicons.dev/icons?i=linkedin"
                   alt="LinkedIn"
+                  width={16}
+                  height={16}
                   className="w-7 h-7"
                   style={{ imageRendering: "pixelated" }}
                 />
@@ -193,9 +219,11 @@ const Hero = () => {
                 className="border-2 border-black p-1.5 shadow-md hover:translate-y-0.5 hover:shadow-none transition-all bg-white"
                 style={{ borderRadius: "0px" }}
               >
-                <img
+                <Image
                   src="https://leetcode.com/favicon.ico"
                   alt="LeetCode"
+                  width={16}
+                  height={16}
                   className="w-7 h-7"
                   style={{ imageRendering: "pixelated" }}
                 />
@@ -207,9 +235,11 @@ const Hero = () => {
                 className="border-2 border-black p-1.5 shadow-md hover:translate-y-0.5 hover:shadow-none transition-all bg-[#1d9bf0]"
                 style={{ borderRadius: "0px" }}
               >
-                <img
+                <Image
                   src="https://skillicons.dev/icons?i=twitter"
                   alt="Twitter"
+                  width={16}
+                  height={16}
                   className="w-7 h-7"
                   style={{ imageRendering: "pixelated" }}
                 />
@@ -221,9 +251,11 @@ const Hero = () => {
                 className="border-2 border-black p-1.5 shadow-md hover:translate-y-0.5 hover:shadow-none transition-all bg-[#242938]"
                 style={{ borderRadius: "0px" }}
               >
-                <img
+                <Image
                   src="https://skillicons.dev/icons?i=gmail"
                   alt="Gmail"
+                  width={16}
+                  height={16}
                   className="w-7 h-7"
                   style={{ imageRendering: "pixelated" }}
                 />

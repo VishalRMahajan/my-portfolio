@@ -6,6 +6,7 @@ import { Card } from "@/components/retroui/Card";
 import { Text } from "@/components/retroui/Text";
 import { DATA } from "@/data";
 import { Badge } from "./retroui/Badge";
+import Image from "next/image";
 
 const WorkExperience = () => {
   const skillColors: Record<string, { bg: string; text: string }> = {
@@ -33,9 +34,11 @@ const WorkExperience = () => {
                 >
                   {job.logoUrl ? (
                     <div className="relative w-full h-full">
-                      <img
+                      <Image
                         src={job.logoUrl}
                         alt={job.company}
+                        width={16}
+                        height={16}
                         className="object-contain w-full h-full"
                         style={{ imageRendering: "pixelated" }}
                       />
@@ -109,9 +112,11 @@ const WorkExperience = () => {
                         key={i}
                         className={`inline-flex items-center gap-1.5 ${colors.bg} ${colors.text} px-3 py-1.5 rounded border-2 border-black shadow-sm`}
                       >
-                        <img
+                        <Image
                           src={`https://skillicons.dev/icons?i=${skillLower}`}
                           alt={skill}
+                          width={16}
+                          height={16}
                           className="w-5 h-5"
                           style={{ imageRendering: "pixelated" }}
                         />
@@ -130,9 +135,11 @@ const WorkExperience = () => {
               >
                 {job.logoUrl ? (
                   <div className="relative w-full h-full">
-                    <img
+                    <Image
                       src={job.logoUrl}
                       alt={job.company}
+                      width={16}
+                      height={16}
                       className="object-contain w-full h-full"
                       style={{ imageRendering: "pixelated" }}
                     />
@@ -211,9 +218,11 @@ const WorkExperience = () => {
                           key={i}
                           className={`inline-flex items-center gap-1.5 ${colors.bg} ${colors.text} px-3 py-1.5 rounded border-2 border-black shadow-sm`}
                         >
-                          <img
+                          <Image
                             src={`https://skillicons.dev/icons?i=${skillLower}`}
                             alt={skill}
+                            width={16}
+                            height={16}
                             className="w-5 h-5"
                             style={{ imageRendering: "pixelated" }}
                           />

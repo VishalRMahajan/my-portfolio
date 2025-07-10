@@ -1,5 +1,6 @@
 import { Archivo_Black, Space_Grotesk } from "next/font/google";
 import "./globals.css";
+import Footer from "@/components/Footer";
 
 const archivoBlack = Archivo_Black({
   subsets: ["latin"],
@@ -49,6 +50,8 @@ export default function RootLayout({
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 lg:py-16">
           {children}
         </div>
+
+        <Footer />
       </body>
     </html>
   );
