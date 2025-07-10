@@ -23,9 +23,9 @@ export default function Footer() {
 
   return (
     <footer className="w-full mt-12 flex flex-col justify-center items-center py-4 font-mono text-sm sm:text-base tracking-wide select-none text-white px-2">
-      <Text className="text-base text-justify text-white">
+      <Text className="text-base text-white text-center">
         <span
-          className="flex flex-wrap items-center gap-1.5 font-bold text-center"
+          className="flex flex-wrap justify-center items-center gap-1.5 font-bold text-center"
           style={{ textShadow: "2px 2px 0 #000" }}
         >
           Made with
@@ -44,7 +44,7 @@ export default function Footer() {
           </a>
         </span>
         <span
-          className="text-xs mt-1 opacity-70 text-center break-all"
+          className="block text-xs mt-1 opacity-70 text-center break-all"
           style={{ textShadow: "1px 1px 0 #000" }}
         >
           Last updated: {lastUpdated}

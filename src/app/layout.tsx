@@ -1,11 +1,7 @@
-"use client";
-
 import { Archivo_Black, Space_Grotesk } from "next/font/google";
 import "./globals.css";
-import Footer from "@/components/Footer";
-import LoadingScreen from "@/components/loading";
-import { useState, useEffect } from "react";
-import OnekoCat from "@/components/onekaCat";
+import type { Metadata } from "next";
+import AppShell from "@/components/AppShell";
 
 const archivoBlack = Archivo_Black({
   subsets: ["latin"],
@@ -21,76 +17,193 @@ const space = Space_Grotesk({
   display: "swap",
 });
 
+export const metadata: Metadata = {
+  metadataBase: new URL("https://vishalrmahajan.in"),
+  title: {
+    default: "Hi, I'm Vishal Mahajan",
+    template: "%s | Vishal Mahajan",
+  },
+  description: "Software Engineer | Backend Developer",
+  keywords: [
+    "Vishal Mahajan",
+    "Vishal R Mahajan",
+    "VishalRMahajan",
+    "Vishal Rajesh Mahajan",
+
+    "Software Engineer",
+    "Full Stack Developer",
+    "Web Developer",
+    "Innovative Developer",
+    "Problem Solver",
+    "React Developer",
+    "Machine Learning Engineer",
+    "Mumbai Developer",
+    "India Software Engineer",
+
+    "React Developer",
+    "Node.js Developer",
+
+    "Innovative Solutions",
+    "Web Applications",
+    "Software Development",
+  ],
+  openGraph: {
+    title: "Vishal Mahajan",
+    description: "Software Engineer | Backend Developer",
+    url: "https://vishalrmahajan.in",
+    siteName: "Vishal Mahajan | Portfolio",
+    locale: "en_US",
+    type: "website",
+    images: [
+      {
+        url: "https://vishalrmahajan.in/VishalRMahajanOgCard.png",
+        width: 1200,
+        height: 630,
+        alt: "Vishal Rajesh Mahajan",
+        type: "image/png",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    site: "@VishalRMahajan",
+    creator: "@VishalRMahajan",
+    title: "Vishal Mahajan ",
+    description: "Software Engineer | Backend Developer",
+    images: [
+      {
+        url: "https://vishalrmahajan.in/VishalRMahajanOgCard.png",
+        width: 1200,
+        height: 630,
+        alt: "Vishal Rajesh Mahajan",
+      },
+    ],
+  },
+  verification: {
+    other: {
+      me: [
+        "https://github.com/VishalRMahajan",
+        "https://linkedin.com/in/VishalRMahajan",
+        "https://twitter.com/VishalRMahajan",
+        "https://instagram.com/VishalRMahajan",
+      ],
+    },
+  },
+  alternates: {
+    canonical: "https://vishalrmahajan.in",
+    languages: {
+      "en-US": "https://vishalrmahajan.in",
+    },
+  },
+  category: "technology & web development",
+  authors: [
+    {
+      name: "Vishal Mahajan",
+      url: "https://vishalrmahajan.in",
+    },
+  ],
+  creator: "Vishal Mahajan",
+  publisher: "Vishal Rajesh Mahajan",
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+    nocache: true,
+  },
+  applicationName: "Vishal Mahajan Portfolio",
+  generator: "Next.js",
+  referrer: "origin-when-cross-origin",
+};
+
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: "Vishal Mahajan",
+  alternateName: [
+    "Vishal R Mahajan",
+    "Vishal Rajesh Mahajan",
+    "VishalRMahajan",
+  ],
+  description: "Information Technology, freelance developer",
+  image: "https://vishalrmahajan.in/VishalRMahajan.png",
+  url: "https://vishalrmahajan.in",
+  sameAs: [
+    "https://github.com/VishalRMahajan",
+    "https://linkedin.com/in/VishalRMahajan",
+    "https://twitter.com/VishalRMahajan",
+    "https://instagram.com/VishalRMahajan",
+  ],
+  jobTitle: ["Student", "Freelance Developer"],
+  worksFor: [
+    {
+      "@type": "Organization",
+      name: "Self-Employed",
+      description: "Freelance Software Development",
+    },
+  ],
+  alumniOf: {
+    "@type": "CollegeOrUniversity",
+    name: "St Francis Institute of Technology",
+    location: {
+      "@type": "Place",
+      address: {
+        "@type": "PostalAddress",
+        addressLocality: "Mumbai",
+        addressRegion: "Maharashtra",
+        addressCountry: "IN",
+      },
+    },
+  },
+  knowsAbout: [
+    "React",
+    "Node.js",
+    "Python",
+    "C++",
+    "Machine Learning",
+    "MongoDb",
+    "ExpressJS",
+    "Leadership",
+    "TypeScript",
+  ],
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: "Mumbai",
+    addressRegion: "Maharashtra",
+    addressCountry: "IN",
+  },
+  seeks: "Freelance Projects, Internships, Collaborations",
+  contactPoint: {
+    "@type": "ContactPoint",
+    contactType: "Personal",
+    email: "vism06@gmail.com",
+  },
+};
+
 export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  const [isLoading, setIsLoading] = useState(true);
-  const [isMobile, setIsMobile] = useState(false);
-  const [hasMounted, setHasMounted] = useState(false);
-
-  useEffect(() => {
-    setHasMounted(true);
-    const checkMobile = () => setIsMobile(window.innerWidth < 768);
-    checkMobile();
-    window.addEventListener("resize", checkMobile);
-    const timer = setTimeout(() => setIsLoading(false), 2500);
-    return () => {
-      window.removeEventListener("resize", checkMobile);
-      clearTimeout(timer);
-    };
-  }, []);
-
-  const loadingProps = isMobile
-    ? {
-        imgSrc: "/first-frame-mobile.png",
-        width: 480,
-        height: 848,
-      }
-    : {
-        imgSrc: "/first-frame-desktop.png",
-        width: 1365,
-        height: 768,
-      };
-
   return (
     <html lang="en">
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(structuredData),
+          }}
+        />
+      </head>
       <body
-        className={`${archivoBlack.variable} ${space.variable} relative min-h-screen bg-black text-white"`}
+        className={`${archivoBlack.variable} ${space.variable} relative min-h-screen bg-black text-white`}
       >
-        {!hasMounted ? null : (
-          <>
-            <video
-              autoPlay
-              loop
-              muted
-              playsInline
-              className="fixed top-0 left-0 w-full h-full object-cover -z-20 md:hidden"
-            >
-              <source src="/video-mobile.mp4" type="video/mp4" />
-            </video>
-            <video
-              autoPlay
-              loop
-              muted
-              playsInline
-              className="fixed top-0 left-0 w-full h-full object-cover -z-20 hidden md:block"
-            >
-              <source src="/video-desktop.mp4" type="video/mp4" />
-            </video>
-
-            <div className="fixed inset-0 bg-black/40 z-[-15]" />
-
-            <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 lg:py-16">
-              <OnekoCat />
-              {children}
-            </div>
-            <Footer />
-
-            {isLoading && <LoadingScreen {...loadingProps} />}
-          </>
-        )}
+        <AppShell>{children}</AppShell>
       </body>
     </html>
   );

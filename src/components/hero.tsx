@@ -10,6 +10,14 @@ import { FileCode, Clock, MapPin } from "lucide-react";
 import { DATA } from "@/data";
 import { getCalApi } from "@calcom/embed-react";
 import Image from "next/image";
+import {
+  differenceInYears,
+  differenceInMonths,
+  differenceInDays,
+  differenceInHours,
+  differenceInMinutes,
+  differenceInSeconds,
+} from "date-fns";
 
 const Hero = () => {
   const [mounted, setMounted] = useState(false);
@@ -45,6 +53,69 @@ const Hero = () => {
       });
     })();
   }, []);
+
+  function getAgeString() {
+    const birth = new Date(Date.UTC(2004, 5, 9, 22, 0, 0));
+    const now = new Date();
+
+    const years = differenceInYears(now, birth);
+    const months = differenceInMonths(now, birth) % 12;
+    const days = differenceInDays(
+      now,
+      new Date(
+        birth.getFullYear() + years,
+        birth.getMonth() + months,
+        birth.getDate(),
+        birth.getHours(),
+        birth.getMinutes(),
+        birth.getSeconds()
+      )
+    );
+    let hours =
+      differenceInHours(
+        now,
+        new Date(
+          now.getFullYear(),
+          now.getMonth(),
+          now.getDate(),
+          birth.getHours(),
+          birth.getMinutes(),
+          birth.getSeconds()
+        )
+      ) % 24;
+    let minutes =
+      differenceInMinutes(
+        now,
+        new Date(
+          now.getFullYear(),
+          now.getMonth(),
+          now.getDate(),
+          now.getHours(),
+          birth.getMinutes(),
+          birth.getSeconds()
+        )
+      ) % 60;
+    let seconds =
+      differenceInSeconds(
+        now,
+        new Date(
+          now.getFullYear(),
+          now.getMonth(),
+          now.getDate(),
+          now.getHours(),
+          now.getMinutes(),
+          birth.getSeconds()
+        )
+      ) % 60;
+    let d = days;
+
+    if (seconds < 0) seconds += 60;
+    if (minutes < 0) minutes += 60;
+    if (hours < 0) hours += 24;
+    if (d < 0) d += 30;
+    return `${years}y ${months}m ${d}d ${hours}h ${minutes}m ${seconds}s`;
+    return `${years}y ${months}m ${days}d ${hours}h ${minutes}m ${seconds}s`;
+  }
 
   return (
     <div className="flex flex-col items-center text-center max-w-xl mx-auto">
@@ -139,7 +210,11 @@ const Hero = () => {
               className="mb-8"
             >
               <Text className="text-base text-justify text-white">
-                i&apos;m 20. final year dev. I build with{" "}
+                i&apos;m{" "}
+                <span className="font-bold text-green-400">
+                  {getAgeString()}
+                </span>
+                . final year dev. I build with{" "}
                 <Badge
                   className="inline-flex items-center gap-1.5 bg-yellow-400 text-black px-2 py-0.5 border-2 border-black shadow-sm font-mono"
                   style={{ borderRadius: "0px" }}

@@ -11,6 +11,10 @@ const nextConfig: NextConfig = {
         protocol: "https",
         hostname: "leetcode.com",
       },
+      {
+        protocol: "https",
+        hostname: "i.scdn.co",
+      },
     ],
     dangerouslyAllowSVG: true,
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
@@ -46,6 +50,15 @@ const nextConfig: NextConfig = {
       },
       {
         source: "/favicon.ico",
+        headers: [
+          {
+            key: "Cache-Control",
+            value: "public, max-age=31536000, immutable",
+          },
+        ],
+      },
+      {
+        source: "/:all*.cur",
         headers: [
           {
             key: "Cache-Control",

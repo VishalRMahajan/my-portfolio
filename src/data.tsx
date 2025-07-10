@@ -34,7 +34,7 @@ export const DATA = {
       Skills: ["NodeJs", "Express"],
       location: "Remote",
       title: "Backend Developer Intern",
-      logoUrl: "/work-logo/TheGoodGameTheory.png",
+      logoUrl: "/work-logo/tggt.png",
       start: "May 2025",
       end: "Present",
       description: "Joined Just Now, Will update soon.",

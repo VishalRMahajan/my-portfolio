@@ -28,19 +28,15 @@ const WorkExperience = () => {
           <Card className="overflow-hidden border-2 border-black bg-black/30 backdrop-blur-sm hover:translate-y-[-2px] transition-all w-full">
             <div className="flex flex-col p-4 sm:hidden">
               <div className="flex justify-center mb-4">
-                <div
-                  className="w-20 h-20 flex-shrink-0 bg-white rounded-md border-2 border-black p-2 shadow-md"
-                  style={{ imageRendering: "pixelated" }}
-                >
+                <div className="w-20 h-20 flex-shrink-0 bg-white rounded-md border-2 border-black p-2 shadow-md">
                   {job.logoUrl ? (
                     <div className="relative w-full h-full">
                       <Image
                         src={job.logoUrl}
                         alt={job.company}
-                        width={16}
-                        height={16}
+                        width={500}
+                        height={500}
                         className="object-contain w-full h-full"
-                        style={{ imageRendering: "pixelated" }}
                       />
                     </div>
                   ) : (
@@ -129,19 +125,15 @@ const WorkExperience = () => {
             </div>
 
             <div className="hidden sm:flex sm:flex-row gap-4 p-6">
-              <div
-                className="w-24 h-24 flex-shrink-0 bg-white rounded-md border-2 border-black p-2 shadow-md"
-                style={{ imageRendering: "pixelated" }}
-              >
+              <div className="w-24 h-24 flex-shrink-0 bg-white rounded-md border-2 border-black p-2 shadow-md">
                 {job.logoUrl ? (
                   <div className="relative w-full h-full">
                     <Image
                       src={job.logoUrl}
                       alt={job.company}
-                      width={16}
-                      height={16}
+                      width={500}
+                      height={500}
                       className="object-contain w-full h-full"
-                      style={{ imageRendering: "pixelated" }}
                     />
                   </div>
                 ) : (
@@ -221,8 +213,8 @@ const WorkExperience = () => {
                           <Image
                             src={`https://skillicons.dev/icons?i=${skillLower}`}
                             alt={skill}
-                            width={16}
-                            height={16}
+                            width={500}
+                            height={500}
                             className="w-5 h-5"
                             style={{ imageRendering: "pixelated" }}
                           />

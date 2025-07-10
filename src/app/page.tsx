@@ -3,6 +3,7 @@ import Hero from "@/components/hero";
 import SkillsGrid from "@/components/skills-grid";
 import WorkExperience from "@/components/work-experience";
 import Projects from "@/components/projects";
+import NowPlayingCard from "@/components/NowPlayingCard";
 
 export default function Page() {
   return (
@@ -33,6 +34,13 @@ export default function Page() {
             Stuff I&apos;ve Built
           </Text>
           <Projects />
+        </section>
+
+        <section id="now-playing">
+          <Text as="h3" className="font-bold mb-6 text-white">
+            What I&apos;m Listening To
+          </Text>
+          <NowPlayingCard />
         </section>
       </div>
     </main>
