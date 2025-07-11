@@ -31,7 +31,7 @@ const nextConfig: NextConfig = {
         ],
       },
       {
-        source: "/video-mobile.mp4",
+        source: "/mobile.mp4",
         headers: [
           {
             key: "Cache-Control",
