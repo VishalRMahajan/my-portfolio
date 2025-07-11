@@ -55,7 +55,7 @@ const Hero = () => {
   }, []);
 
   function getAgeString() {
-    const birth = new Date(Date.UTC(2004, 5, 9, 22, 0, 0));
+    const birth = new Date(Date.UTC(2004, 8, 5, 22, 0, 0));
     const now = new Date();
 
     const years = differenceInYears(now, birth);
