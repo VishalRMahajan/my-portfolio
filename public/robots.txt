@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://vishalrmahajan.in
+
+# Sitemaps
+Sitemap: https://vishalrmahajan.in/sitemap.xml
