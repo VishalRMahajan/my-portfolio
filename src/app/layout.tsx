@@ -23,33 +23,21 @@ export const metadata: Metadata = {
     default: "Hi, I'm Vishal Mahajan",
     template: "%s | Vishal Mahajan",
   },
-  description: "Software Engineer | Backend Developer",
+  description: "Hey, I’m Vishal Mahajan. This is my little corner of the internet. Feel free to scroll through.",
   keywords: [
     "Vishal Mahajan",
     "Vishal R Mahajan",
     "VishalRMahajan",
     "Vishal Rajesh Mahajan",
-
     "Software Engineer",
-    "Full Stack Developer",
-    "Web Developer",
-    "Innovative Developer",
-    "Problem Solver",
-    "React Developer",
-    "Machine Learning Engineer",
-    "Mumbai Developer",
-    "India Software Engineer",
-
     "React Developer",
     "Node.js Developer",
-
-    "Innovative Solutions",
-    "Web Applications",
+    "Backend Developer",
     "Software Development",
   ],
   openGraph: {
     title: "Vishal Mahajan",
-    description: "Software Engineer | Backend Developer",
+    description: "Hey, I’m Vishal Mahajan. This is my little corner of the internet. Feel free to scroll through.",
     url: "https://vishalrmahajan.in",
     siteName: "Vishal Mahajan | Portfolio",
     locale: "en_US",
@@ -68,8 +56,8 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     site: "@VishalRMahajan",
     creator: "@VishalRMahajan",
-    title: "Vishal Mahajan ",
-    description: "Software Engineer | Backend Developer",
+    title: "Vishal Mahajan",
+    description: "Hey, I’m Vishal Mahajan. This is my little corner of the internet. Feel free to scroll through.",
     images: [
       {
         url: "https://vishalrmahajan.in/VishalRMahajanOgCard.png",
@@ -114,9 +102,7 @@ export const metadata: Metadata = {
       "max-image-preview": "large",
       "max-snippet": -1,
     },
-    nocache: true,
   },
-  applicationName: "Vishal Mahajan Portfolio",
   generator: "Next.js",
   referrer: "origin-when-cross-origin",
 };
@@ -130,7 +116,7 @@ const structuredData = {
     "Vishal Rajesh Mahajan",
     "VishalRMahajan",
   ],
-  description: "Information Technology, freelance developer",
+  description: "Hey, I’m Vishal Mahajan. This is my little corner of the internet. Feel free to scroll through.",
   image: "https://vishalrmahajan.in/VishalRMahajan.png",
   url: "https://vishalrmahajan.in",
   sameAs: [
@@ -139,12 +125,12 @@ const structuredData = {
     "https://twitter.com/VishalRMahajan",
     "https://instagram.com/VishalRMahajan",
   ],
-  jobTitle: ["Student", "Freelance Developer"],
+  jobTitle: "Software Engineer",
   worksFor: [
     {
       "@type": "Organization",
-      name: "Self-Employed",
-      description: "Freelance Software Development",
+      name: "",
+      description: "",
     },
   ],
   alumniOf: {
@@ -177,7 +163,7 @@ const structuredData = {
     addressRegion: "Maharashtra",
     addressCountry: "IN",
   },
-  seeks: "Freelance Projects, Internships, Collaborations",
+  seeks: "Full time Roles, Freelance Projects, Internships and Collaborations",
   contactPoint: {
     "@type": "ContactPoint",
     contactType: "Personal",
