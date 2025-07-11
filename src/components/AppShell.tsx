@@ -45,7 +45,7 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
             playsInline
             className="fixed top-0 left-0 w-full h-full object-cover -z-20 md:hidden"
           >
-            <source src="/video-mobile.mp4" type="video/mp4" />
+            <source src="/mobile.mp4" type="video/mp4" />
           </video>
           <video
             autoPlay
