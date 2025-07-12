@@ -23,7 +23,8 @@ export const metadata: Metadata = {
     default: "Hi, I'm Vishal Mahajan",
     template: "%s | Vishal Mahajan",
   },
-  description: "Hey, I’m Vishal Mahajan. This is my little corner of the internet. Feel free to scroll through.",
+  description:
+    "Hey, I’m Vishal Mahajan. This is my little corner of the internet. Feel free to scroll through.",
   keywords: [
     "Vishal Mahajan",
     "Vishal R Mahajan",
@@ -37,7 +38,8 @@ export const metadata: Metadata = {
   ],
   openGraph: {
     title: "Vishal Mahajan",
-    description: "Hey, I’m Vishal Mahajan. This is my little corner of the internet. Feel free to scroll through.",
+    description:
+      "Hey, I’m Vishal Mahajan. This is my little corner of the internet. Feel free to scroll through.",
     url: "https://vishalrmahajan.in",
     siteName: "Vishal Mahajan | Portfolio",
     locale: "en_US",
@@ -57,7 +59,8 @@ export const metadata: Metadata = {
     site: "@VishalRMahajan",
     creator: "@VishalRMahajan",
     title: "Vishal Mahajan",
-    description: "Hey, I’m Vishal Mahajan. This is my little corner of the internet. Feel free to scroll through.",
+    description:
+      "Hey, I’m Vishal Mahajan. This is my little corner of the internet. Feel free to scroll through.",
     images: [
       {
         url: "https://vishalrmahajan.in/VishalRMahajanOgCard.png",
@@ -116,7 +119,8 @@ const structuredData = {
     "Vishal Rajesh Mahajan",
     "VishalRMahajan",
   ],
-  description: "Hey, I’m Vishal Mahajan. This is my little corner of the internet. Feel free to scroll through.",
+  description:
+    "Hey, I’m Vishal Mahajan. This is my little corner of the internet. Feel free to scroll through.",
   image: "https://vishalrmahajan.in/VishalRMahajan.png",
   url: "https://vishalrmahajan.in",
   sameAs: [

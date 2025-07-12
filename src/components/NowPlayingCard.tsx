@@ -4,6 +4,7 @@ import { useEffect, useState, useRef } from "react";
 import { Card } from "@/components/retroui/Card";
 import { Text } from "@/components/retroui/Text";
 import Image from "next/image";
+import clsx from "clsx";
 
 interface NowPlaying {
   isPlaying: boolean;
@@ -79,37 +80,39 @@ export default function NowPlayingCard() {
 
   return (
     <Card className="flex flex-col md:flex-row items-center gap-4 bg-black/70 border-green-400 border-2 shadow-lg px-4 py-5 w-full max-w-md md:max-w-2xl mx-auto">
-      <div className="w-20 h-20 md:w-24 md:h-24 flex-shrink-0 rounded-md overflow-hidden border-2 border-black bg-gray-900 flex items-center justify-center mx-auto md:mx-0">
-        {track?.albumImageUrl ? (
-          <Image
-            src={track.albumImageUrl}
-            alt={track.title}
-            width={96}
-            height={96}
-            className="w-20 h-20 md:w-24 md:h-24 object-cover"
-            style={{ imageRendering: "pixelated" }}
-          />
-        ) : (
-          <div className="w-full h-full flex items-center justify-center text-gray-500 text-3xl">
-            ♪
-          </div>
-        )}
+      <div className="relative w-28 h-28 md:w-32 md:h-32 flex-shrink-0 rounded-full bg-gray-900 border-4 border-black overflow-hidden flex items-center justify-center">
+        <div
+          className={clsx(
+            "w-full h-full rounded-full p-2 flex items-center justify-center",
+            track?.isPlaying && "animate-spin-slow"
+          )}
+        >
+          {track?.albumImageUrl ? (
+            <Image
+              src={track.albumImageUrl}
+              alt={track.title}
+              width={96}
+              height={96}
+              className="w-full h-full object-cover rounded-full"
+              style={{ imageRendering: "pixelated" }}
+            />
+          ) : (
+            <div className="w-full h-full flex items-center justify-center text-gray-500 text-3xl">
+              ♪
+            </div>
+          )}
+        </div>
+        <div className="absolute inset-0 flex items-center justify-center">
+          <div className="w-3 h-3 rounded-full bg-black z-10" />
+        </div>
       </div>
-      <div className="flex-1 min-w-0 flex flex-col gap-1 w-full">
+
+      <div className="flex-1 min-w-0 flex flex-col gap-1 w-full text-center md:text-left">
         <Text
           as="h4"
           className="font-bold text-green-400 text-lg md:text-xl truncate"
         >
-          {track?.isPlaying ? (
-            <a
-              href={track.songUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:underline"
-            >
-              {track.title}
-            </a>
-          ) : track?.title ? (
+          {track?.isPlaying || track?.title ? (
             <a
               href={track.songUrl}
               target="_blank"
@@ -123,11 +126,7 @@ export default function NowPlayingCard() {
           )}
         </Text>
         <Text className="text-white text-base truncate">
-          {track?.isPlaying
-            ? track.artist
-            : track?.artist
-            ? track.artist
-            : "Spotify"}
+          {track?.artist || "Spotify"}
         </Text>
         {track?.album && (
           <Text className="text-green-200 text-xs truncate">
@@ -160,10 +159,7 @@ export default function NowPlayingCard() {
         </div>
       </div>
       <div className="flex-shrink-0 mt-4 md:mt-0 w-full md:w-auto flex justify-center">
-        <span
-          className="inline-block bg-green-400 text-black font-bold border-2 border-black px-4 py-2 rounded shadow-md"
-          style={{ borderRadius: "0px" }}
-        >
+        <span className="inline-block bg-green-400 text-black font-bold border-2 border-black px-4 py-2 rounded-none shadow-md">
           {track?.isPlaying ? "LIVE" : "OFF"}
         </span>
       </div>

@@ -1,11 +1,20 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Card } from "@/components/retroui/Card";
 import { Text } from "@/components/retroui/Text";
 import { Dialog } from "@/components/retroui/Dialog";
+import { Button } from "@/components/retroui/Button";
 import { DATA } from "@/data";
-import { Github, ExternalLink, Play, X } from "lucide-react";
+import {
+  Github,
+  ExternalLink,
+  Play,
+  X,
+  ArrowLeft,
+  ArrowRight,
+} from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 
 interface ProjectType {
   readonly title: string;
@@ -22,6 +31,10 @@ const Projects = () => {
   const [selectedProject, setSelectedProject] = useState<ProjectType | null>(
     null
   );
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [direction, setDirection] = useState<"left" | "right">("right");
+
+  const projects = DATA.projects;
 
   const openVideoDialog = (project: ProjectType) => {
     if (project.videosrc) {
@@ -32,7 +45,7 @@ const Projects = () => {
 
   const getYouTubeEmbedUrl = (url: string) => {
     const videoId = url.split("v=")[1] || url.split("/").pop();
-    return `https://www.youtube.com/embed/${videoId}?controls=1&rel=0&showinfo=1&modestbranding=1&fs=1&cc_load_policy=0&iv_load_policy=3&autohide=0`;
+    return `https://www.youtube.com/embed/${videoId}?controls=1&rel=0&showinfo=1&modestbranding=1&fs=1`;
   };
 
   const colorSchemes = [
@@ -63,156 +76,135 @@ const Projects = () => {
     },
   ];
 
+  const goToPrevious = () => {
+    setDirection("left");
+    setCurrentIndex((prev) => (prev - 1 + projects.length) % projects.length);
+  };
+
+  const goToNext = () => {
+    setDirection("right");
+    setCurrentIndex((prev) => (prev + 1) % projects.length);
+  };
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      goToNext();
+    }, 8000);
+    return () => clearInterval(interval);
+  }, []);
+
+  const project = projects[currentIndex];
+  const colors = colorSchemes[currentIndex % colorSchemes.length];
+
   return (
     <div className="space-y-6">
-      <div className="space-y-6">
-        {DATA.projects.map((project: ProjectType, index) => {
-          const colors = colorSchemes[index % colorSchemes.length];
+      <AnimatePresence mode="wait" initial={false}>
+        <motion.div
+          key={currentIndex}
+          initial={{ opacity: 0, x: direction === "right" ? 100 : -100 }}
+          animate={{ opacity: 1, x: 0 }}
+          exit={{ opacity: 0, x: direction === "right" ? -100 : 100 }}
+          transition={{ duration: 0.3 }}
+        >
+          <Card
+            className={`border-2 ${colors.border} ${colors.bg} backdrop-blur-sm transition-all hover:translate-y-[-2px] hover:shadow-lg shadow-black relative overflow-hidden shadow-xl`}
+          >
+            <div
+              className={`absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-${
+                colors.accent.split("-")[1]
+              }-500 to-${colors.accent.split("-")[1]}-300`}
+            ></div>
 
-          return (
-            <Card
-              key={index}
-              className={`border-2 ${colors.border} ${colors.bg} backdrop-blur-sm hover:translate-y-[-2px] transition-all hover:shadow-lg shadow-black relative overflow-hidden shadow-xl`}
-            >
-              <div
-                className={`absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-${
-                  colors.accent.split("-")[1]
-                }-500 to-${colors.accent.split("-")[1]}-300`}
-              ></div>
+            <div className="p-4">
+              <Text
+                as="h4"
+                className={`font-bold text-lg ${colors.accent} font-mono tracking-wide`}
+              >
+                {project.title}
+              </Text>
+              <Text className="text-gray-300 text-sm mt-1 font-mono">
+                {project.description}
+              </Text>
 
-              <div className="p-4">
-                <div className="block md:hidden">
-                  <div className="space-y-3">
-                    <div className="flex items-start justify-between">
-                      <div className="flex-1 min-w-0">
-                        <Text
-                          as="h4"
-                          className={`font-bold text-lg ${colors.accent} font-mono tracking-wide`}
-                        >
-                          {project.title}
-                        </Text>
-                        <Text className="text-gray-300 text-sm mt-1 font-mono">
-                          {project.description}
-                        </Text>
-                      </div>
-                    </div>
-
-                    <div className="text-gray-100 text-sm leading-relaxed font-mono">
-                      <ul className="space-y-2">
-                        {project.content.map((point, idx) => (
-                          <li key={idx} className="flex items-start">
-                            <span
-                              className={`${colors.accent} mr-2 mt-1 text-xs font-mono`}
-                            >
-                              ▸
-                            </span>
-                            <span>{point}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-
-                    <div className="flex items-center gap-2 flex-wrap">
-                      <a
-                        href={project.githubLink}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1 bg-gray-500 text-white px-2 py-1 text-xs border border-gray-500/30 hover:bg-gray-500/30 hover:text-white transition-colors cursor-pointer font-mono shadow-sm"
-                      >
-                        <Github className="w-3 h-3" />
-                        GitHub
-                      </a>
-
-                      {project.videosrc && (
-                        <button
-                          onClick={() => openVideoDialog(project)}
-                          className="inline-flex items-center gap-1 bg-red-500 text-white px-2 py-1 text-xs border border-red-500/30 hover:bg-red-500/30 hover:text-red-300 transition-colors cursor-pointer font-mono shadow-sm"
-                        >
-                          <Play className="w-3 h-3" />
-                          Video
-                        </button>
-                      )}
-
-                      {project.deployed && (
-                        <a
-                          href={project.deployedlink}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="inline-flex items-center gap-1 bg-green-500 text-white px-2 py-1 text-xs border border-green-500/30 hover:bg-green-500/30 hover:text-green-300 transition-colors cursor-pointer font-mono shadow-sm"
-                        >
-                          <ExternalLink className="w-3 h-3" />
-                          Live
-                        </a>
-                      )}
-                    </div>
-                  </div>
-                </div>
-                <div className="hidden md:flex items-start justify-between">
-                  <div className="flex-1 min-w-0 pr-4">
-                    <Text
-                      as="h4"
-                      className={`font-bold text-lg ${colors.accent} font-mono tracking-wide`}
+              <ul className="space-y-2 text-sm text-gray-100 mt-2 font-mono">
+                {project.content.map((point, idx) => (
+                  <li key={idx} className="flex items-start">
+                    <span
+                      className={`${colors.accent} mr-2 mt-1 text-xs font-mono`}
                     >
-                      {project.title}
-                    </Text>
-                    <Text className="text-gray-300 text-sm mt-1 font-mono">
-                      {project.description}
-                    </Text>
+                      ▸
+                    </span>
+                    <span>{point}</span>
+                  </li>
+                ))}
+              </ul>
 
-                    <div className="text-gray-100 text-sm leading-relaxed mt-2 font-mono">
-                      <ul className="space-y-2">
-                        {project.content.map((point, idx) => (
-                          <li key={idx} className="flex items-start">
-                            <span
-                              className={`${colors.accent} mr-2 mt-1 text-xs font-mono`}
-                            >
-                              ▸
-                            </span>
-                            <span>{point}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  </div>
+              <div className="flex items-center gap-2 flex-wrap mt-4">
+                <a
+                  href={project.githubLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1 bg-gray-500 text-white px-2 py-1 text-xs border border-gray-500/30 hover:bg-gray-500/30 hover:text-white transition-colors cursor-pointer font-mono shadow-sm"
+                >
+                  <Github className="w-3 h-3" />
+                  GitHub
+                </a>
 
-                  <div className="flex items-center gap-2 flex-shrink-0">
-                    <a
-                      href={project.githubLink}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1 bg-gray-500 text-white px-2 py-1 text-xs border border-gray-500/30 hover:bg-gray-500/30 hover:text-white transition-colors cursor-pointer font-mono shadow-sm"
-                    >
-                      <Github className="w-3 h-3" />
-                      GitHub
-                    </a>
+                {project.videosrc && (
+                  <button
+                    onClick={() => openVideoDialog(project)}
+                    className="inline-flex items-center gap-1 bg-red-500 text-white px-2 py-1 text-xs border border-red-500/30 hover:bg-red-500/30 hover:text-red-300 transition-colors cursor-pointer font-mono shadow-sm"
+                  >
+                    <Play className="w-3 h-3" />
+                    Video
+                  </button>
+                )}
 
-                    {project.videosrc && (
-                      <button
-                        onClick={() => openVideoDialog(project)}
-                        className="inline-flex items-center gap-1 bg-red-500 text-white px-2 py-1 text-xs border border-red-500/30 hover:bg-red-500/30 hover:text-red-300 transition-colors cursor-pointer font-mono shadow-sm"
-                      >
-                        <Play className="w-3 h-3" />
-                        Video
-                      </button>
-                    )}
-
-                    {project.deployed && (
-                      <a
-                        href={project.deployedlink}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1 bg-green-500 text-white px-2 py-1 text-xs border border-green-500/30 hover:bg-green-500/30 hover:text-green-300 transition-colors cursor-pointer font-mono shadow-sm"
-                      >
-                        <ExternalLink className="w-3 h-3" />
-                        Live
-                      </a>
-                    )}
-                  </div>
-                </div>
+                {project.deployed && (
+                  <a
+                    href={project.deployedlink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1 bg-green-500 text-white px-2 py-1 text-xs border border-green-500/30 hover:bg-green-500/30 hover:text-green-300 transition-colors cursor-pointer font-mono shadow-sm"
+                  >
+                    <ExternalLink className="w-3 h-3" />
+                    Live
+                  </a>
+                )}
               </div>
-            </Card>
-          );
-        })}
+            </div>
+          </Card>
+        </motion.div>
+      </AnimatePresence>
+      <div className="flex justify-center items-center gap-4 mt-2">
+        <Button
+          onClick={goToPrevious}
+          variant="outline"
+          className="bg-white text-black border-white"
+        >
+          <ArrowLeft className="w-4 h-4" />
+        </Button>
+        <div className="flex items-center gap-2">
+          {projects.map((_, idx) => (
+            <span
+              key={idx}
+              className={`w-3 h-3 border-2 border-white ${
+                idx === currentIndex ? "bg-white" : "bg-transparent"
+              } rounded-none`}
+              style={{
+                display: "inline-block",
+                boxShadow: idx === currentIndex ? "2px 2px 0 #000" : undefined,
+              }}
+            ></span>
+          ))}
+        </div>
+        <Button
+          onClick={goToNext}
+          variant="outline"
+          className="bg-white text-black border-white"
+        >
+          <ArrowRight className="w-4 h-4" />
+        </Button>
       </div>
 
       <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
@@ -245,6 +237,22 @@ const Projects = () => {
           </div>
         </Dialog.Content>
       </Dialog>
+
+      <div className="flex justify-center mt-8">
+        <a
+          href="https://github.com/VishalRMahajan?tab=repositories"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <Button
+            size="lg"
+            className="bg-green-600 text-white border-2 border-black shadow-md flex items-center justify-center gap-2 py-2 px-4 hover:bg-green-500 hover:translate-y-0.5 hover:shadow-none transition-all"
+            style={{ borderRadius: "0px" }}
+          >
+            View More Projects
+          </Button>
+        </a>
+      </div>
     </div>
   );
 };

@@ -113,8 +113,11 @@ const Hero = () => {
     if (minutes < 0) minutes += 60;
     if (hours < 0) hours += 24;
     if (d < 0) d += 30;
-    return `${years}y ${months}m ${d}d ${hours}h ${minutes}m ${seconds}s`;
-    return `${years}y ${months}m ${days}d ${hours}h ${minutes}m ${seconds}s`;
+
+    const pad = (n: number) => (n < 10 ? `0${n}` : n.toString().slice(0, 2));
+    return `${pad(years)}y ${pad(months)}m ${pad(d)}d ${pad(hours)}h ${pad(
+      minutes
+    )}m ${pad(seconds)}s`;
   }
 
   return (
