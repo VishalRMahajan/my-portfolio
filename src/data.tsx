@@ -1,6 +1,9 @@
 export const DATA = {
-  contact: {
+  hero: {
     name: "Vishal Mahajan",
+    location: "Mumbai",
+    Timezone: "GMT+5:30",
+    avatarSrc: "/VishalRMahajan.png",
     social: {
       GitHub: "https://github.com/VishalRMahajan",
       LinkedIn: "https://linkedin.com/in/VishalRMahajan",
@@ -9,6 +12,11 @@ export const DATA = {
       LeetCode: "https://leetcode.com/VishalRMahajan/",
       Resume: "https://resume.vishalrmahajan.in",
     },
+  },
+  footer: {
+    name: "Vishal Rajesh Mahajan",
+    websiteUrl: "https://vishalrmahajan.in",
+    VideoCredit: `Video by <a href="https://pixabay.com/users/u_zys3fy54t3-36732626/?utm_source=link-attribution&utm_medium=referral&utm_campaign=video&utm_content=164386">u_zys3fy54t3</a> from <a href="https://pixabay.com//?utm_source=link-attribution&utm_medium=referral&utm_campaign=video&utm_content=164386">Pixabay</a>`,
   },
   skills: [
     "nodejs",

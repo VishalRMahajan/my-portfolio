@@ -43,7 +43,8 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
             loop
             muted
             playsInline
-            className="fixed top-0 left-0 w-full h-full object-cover -z-20 md:hidden"
+            className="fixed top-0 left-0 w-full h-screen object-cover -z-20 md:hidden"
+            style={{ height: "100dvh" }}
           >
             <source src="/mobile.mp4" type="video/mp4" />
           </video>

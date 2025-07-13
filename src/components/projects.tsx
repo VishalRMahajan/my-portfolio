@@ -240,7 +240,7 @@ const Projects = () => {
 
       <div className="flex justify-center mt-8">
         <a
-          href="https://github.com/VishalRMahajan?tab=repositories"
+          href={`${DATA.hero.social.GitHub}?tab=repositories`}
           target="_blank"
           rel="noopener noreferrer"
         >

@@ -20,26 +20,31 @@ import {
 } from "date-fns";
 
 const Hero = () => {
-  const [mounted, setMounted] = useState(false);
-  const [mumbaiTime, setMumbaiTime] = useState("");
+  const [isMounted, setIsMounted] = useState(false);
+  const [localTime, setLocalTime] = useState("");
+
+  const location = DATA.hero.location;
+  const timezone = DATA.hero.Timezone;
+  const avatarSrc = DATA.hero.avatarSrc;
+  const name = DATA.hero.name;
 
   useEffect(() => {
-    setMounted(true);
+    setIsMounted(true);
 
-    const updateMumbaiTime = () => {
+    const updateLocalTime = () => {
       const now = new Date();
-      const mumbaiTime = new Intl.DateTimeFormat("en-US", {
+      const formattedTime = new Intl.DateTimeFormat("en-US", {
         timeZone: "Asia/Kolkata",
         hour: "2-digit",
         minute: "2-digit",
         second: "2-digit",
         hour12: false,
       }).format(now);
-      setMumbaiTime(mumbaiTime);
+      setLocalTime(formattedTime);
     };
 
-    updateMumbaiTime();
-    const interval = setInterval(updateMumbaiTime, 1000);
+    updateLocalTime();
+    const interval = setInterval(updateLocalTime, 1000);
     return () => clearInterval(interval);
   }, []);
 
@@ -114,7 +119,7 @@ const Hero = () => {
     if (hours < 0) hours += 24;
     if (d < 0) d += 30;
 
-    const pad = (n: number) => (n < 10 ? `0${n}` : n.toString().slice(0, 2));
+    const pad = (n: number) => n.toString().padStart(2, "0");
     return `${pad(years)}y ${pad(months)}m ${pad(d)}d ${pad(hours)}h ${pad(
       minutes
     )}m ${pad(seconds)}s`;
@@ -123,7 +128,7 @@ const Hero = () => {
   return (
     <div className="flex flex-col items-center text-center max-w-xl mx-auto">
       <AnimatePresence>
-        {mounted && (
+        {isMounted && (
           <>
             <motion.div
               initial={{ opacity: 0 }}
@@ -141,14 +146,14 @@ const Hero = () => {
                   style={{ borderRadius: "0px" }}
                 >
                   <Clock className="w-3 h-3" />
-                  <span>{mumbaiTime}</span>
+                  <span>{localTime}</span>
                 </Badge>
                 <Badge
                   className="inline-flex items-center gap-1.5 bg-purple-500 text-white px-2 py-0.5 border-2 border-black shadow-sm font-mono"
                   style={{ borderRadius: "0px" }}
                 >
                   <MapPin className="w-3 h-3" />
-                  <span>Mumbai</span>
+                  <span>{location}</span>
                 </Badge>
               </motion.div>
 
@@ -158,7 +163,7 @@ const Hero = () => {
                 transition={{ duration: 0.4, delay: 0.1 }}
                 className="text-xs text-gray-400 font-mono"
               >
-                GMT+5:30
+                {timezone}
               </motion.div>
             </motion.div>
 
@@ -169,11 +174,13 @@ const Hero = () => {
               className="w-32 h-32 mb-6"
             >
               <Avatar className="w-32 h-32 overflow-hidden rounded-full border-4 border-black">
-                <Avatar.Image
-                  src="/VishalRMahajan.png"
-                  alt={DATA.contact.name}
-                />
-                <Avatar.Fallback>VM</Avatar.Fallback>
+                <Avatar.Image src={avatarSrc} alt={name} />
+                <Avatar.Fallback>
+                  {DATA.hero.name
+                    .split(" ")
+                    .map((word) => word[0]?.toUpperCase())
+                    .join("")}
+                </Avatar.Fallback>
               </Avatar>
             </motion.div>
 
@@ -203,7 +210,7 @@ const Hero = () => {
                 , I&apos;m
               </Text>
               <Text as="h2" className="text-4xl font-bold mb-6 text-white">
-                {DATA.contact.name}
+                {name}
               </Text>
             </motion.div>
             <motion.div
@@ -259,7 +266,7 @@ const Hero = () => {
               className="flex items-center justify-center gap-4 mb-8"
             >
               <a
-                href={DATA.contact.social.GitHub}
+                href={DATA.hero.social.GitHub}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="border-2 border-black p-1.5 shadow-md hover:translate-y-0.5 hover:shadow-none transition-all bg-gray-800"
@@ -275,7 +282,7 @@ const Hero = () => {
                 />
               </a>
               <a
-                href={DATA.contact.social.LinkedIn}
+                href={DATA.hero.social.LinkedIn}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="border-2 border-black p-1.5 shadow-md hover:translate-y-0.5 hover:shadow-none transition-all bg-blue-600"
@@ -291,7 +298,7 @@ const Hero = () => {
                 />
               </a>
               <a
-                href={DATA.contact.social.LeetCode}
+                href={DATA.hero.social.LeetCode}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="border-2 border-black p-1.5 shadow-md hover:translate-y-0.5 hover:shadow-none transition-all bg-white"
@@ -307,7 +314,7 @@ const Hero = () => {
                 />
               </a>
               <a
-                href={DATA.contact.social.X}
+                href={DATA.hero.social.X}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="border-2 border-black p-1.5 shadow-md hover:translate-y-0.5 hover:shadow-none transition-all bg-[#1d9bf0]"
@@ -323,7 +330,7 @@ const Hero = () => {
                 />
               </a>
               <a
-                href={DATA.contact.social.Email}
+                href={DATA.hero.social.Email}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="border-2 border-black p-1.5 shadow-md hover:translate-y-0.5 hover:shadow-none transition-all bg-[#242938]"
@@ -347,7 +354,7 @@ const Hero = () => {
               className="flex flex-wrap items-center justify-center gap-4 w-full"
             >
               <a
-                href={DATA.contact.social.Resume}
+                href={DATA.hero.social.Resume}
                 target="_blank"
                 rel="noopener noreferrer"
               >

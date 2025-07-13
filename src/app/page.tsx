@@ -37,7 +37,6 @@ export default function Page() {
     <main className="min-h-screen scroll-smooth">
       <div className="max-w-4xl mx-auto space-y-24 p-6 pt-6 lg:pt-12">
         {" "}
-        {/* Reduced top padding */}
         <motion.div
           initial={{
             opacity: 0,

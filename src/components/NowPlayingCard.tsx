@@ -42,8 +42,39 @@ export default function NowPlayingCard() {
     fetch("/api/spotify/now-playing")
       .then((res) => res.json())
       .then((data) => {
-        setTrack(data);
-        setProgressMs(data.progressMs ?? 0);
+        if (!data || data.error) {
+          setTrack({
+            isPlaying: false,
+            title: "Not Playing",
+            artist: "Spotify",
+            album: "",
+            albumImageUrl: "",
+            songUrl: "#",
+            progressMs: 0,
+            durationMs: 0,
+            device: "",
+            playedAt: "",
+          });
+          setProgressMs(0);
+        } else {
+          setTrack(data);
+          setProgressMs(data.progressMs ?? 0);
+        }
+      })
+      .catch(() => {
+        setTrack({
+          isPlaying: false,
+          title: "Not Playing",
+          artist: "Spotify",
+          album: "",
+          albumImageUrl: "",
+          songUrl: "#",
+          progressMs: 0,
+          durationMs: 0,
+          device: "",
+          playedAt: "",
+        });
+        setProgressMs(0);
       });
   }, []);
 
