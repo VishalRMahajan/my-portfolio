@@ -14,6 +14,9 @@ module.exports = {
         allow: "/",
       },
     ],
-    additionalSitemaps: ["https://vishalrmahajan.in/sitemap.xml"],
+    additionalSitemaps: [
+      "https://vishalrmahajan.in/sitemap.xml",
+      "https://vishalrmahajan.in/image-sitemap.xml",
+    ],
   },
 };

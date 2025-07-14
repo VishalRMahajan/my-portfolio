@@ -45,6 +45,8 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
             playsInline
             className="fixed top-0 left-0 w-full h-screen object-cover -z-20 md:hidden"
             style={{ height: "100dvh" }}
+            aria-label="Animated background video for mobile devices"
+            tabIndex={-1}
           >
             <source src="/mobile.mp4" type="video/mp4" />
           </video>
@@ -54,6 +56,8 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
             muted
             playsInline
             className="fixed top-0 left-0 w-full h-full object-cover -z-20 hidden md:block"
+            aria-label="Animated background video for desktop devices"
+            tabIndex={-1}
           >
             <source src="/video-desktop.mp4" type="video/mp4" />
           </video>

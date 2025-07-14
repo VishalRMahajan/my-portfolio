@@ -362,6 +362,7 @@ const Hero = () => {
                   size="lg"
                   className="bg-white text-black border-2 border-black shadow-md font-bold flex items-center justify-center gap-2 py-2 px-4 hover:bg-white/75 hover:translate-y-0.5 hover:shadow-none transition-all"
                   style={{ borderRadius: "0px" }}
+                  aria-label="Resume"
                 >
                   <FileCode className="w-5 h-5" />
                   Resume
@@ -375,6 +376,7 @@ const Hero = () => {
                 data-cal-namespace="30min"
                 data-cal-link="vishalrmahajan/30min"
                 data-cal-config='{"layout":"month_view","theme":"dark"}'
+                aria-label="Get in Touch"
               >
                 Get in Touch
               </Button>

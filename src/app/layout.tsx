@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     template: "%s | Vishal Mahajan",
   },
   description:
-    "Hey, I’m Vishal Mahajan. This is my little corner of the internet. Feel free to scroll through.",
+    "Hey, I’m Vishal Mahajan aka VishalRMahajan. This is my little corner of the internet. Feel free to scroll through.",
   keywords: [
     "Vishal Mahajan",
     "Vishal R Mahajan",
@@ -35,11 +35,15 @@ export const metadata: Metadata = {
     "Node.js Developer",
     "Backend Developer",
     "Software Development",
+    "Portfolio",
+    "Pixel retro portfolio",
+    "vishal",
+    "vishalrmahajan",
   ],
   openGraph: {
     title: "Vishal Mahajan",
     description:
-      "Hey, I’m Vishal Mahajan. This is my little corner of the internet. Feel free to scroll through.",
+      "Hey, I’m Vishal Mahajan aka VishalRMahajan. This is my little corner of the internet. Feel free to scroll through.",
     url: "https://vishalrmahajan.in",
     siteName: "Vishal Mahajan | Portfolio",
     locale: "en_US",
@@ -60,7 +64,7 @@ export const metadata: Metadata = {
     creator: "@VishalRMahajan",
     title: "Vishal Mahajan",
     description:
-      "Hey, I’m Vishal Mahajan. This is my little corner of the internet. Feel free to scroll through.",
+      "Hey, I’m Vishal Mahajan aka VishalRMahajan. This is my little corner of the internet. Feel free to scroll through.",
     images: [
       {
         url: "https://vishalrmahajan.in/VishalRMahajanOgCard.png",
@@ -120,8 +124,8 @@ const structuredData = {
     "VishalRMahajan",
   ],
   description:
-    "Hey, I’m Vishal Mahajan. This is my little corner of the internet. Feel free to scroll through.",
-  image: "https://vishalrmahajan.in/VishalRMahajan.png",
+    "Hey, I’m Vishal Mahajan aka VishalRMahajan. This is my little corner of the internet. Feel free to scroll through.",
+  image: "https://vishalrmahajan.in/Vishal_Mahajan.png",
   url: "https://vishalrmahajan.in",
   sameAs: [
     "https://github.com/VishalRMahajan",
@@ -129,7 +133,7 @@ const structuredData = {
     "https://twitter.com/VishalRMahajan",
     "https://instagram.com/VishalRMahajan",
   ],
-  jobTitle: "Software Engineer",
+  jobTitle: "Backend Developer",
   worksFor: [
     {
       "@type": "Organization",

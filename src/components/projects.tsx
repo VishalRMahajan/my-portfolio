@@ -154,6 +154,7 @@ const Projects = () => {
                   <button
                     onClick={() => openVideoDialog(project)}
                     className="inline-flex items-center gap-1 bg-red-500 text-white px-2 py-1 text-xs border border-red-500/30 hover:bg-red-500/30 hover:text-red-300 transition-colors cursor-pointer font-mono shadow-sm"
+                    aria-label="Watch Video"
                   >
                     <Play className="w-3 h-3" />
                     Video
@@ -181,6 +182,7 @@ const Projects = () => {
           onClick={goToPrevious}
           variant="outline"
           className="bg-white text-black border-white"
+          aria-label="Previous Project"
         >
           <ArrowLeft className="w-4 h-4" />
         </Button>
@@ -202,6 +204,7 @@ const Projects = () => {
           onClick={goToNext}
           variant="outline"
           className="bg-white text-black border-white"
+          aria-label="Next Project"
         >
           <ArrowRight className="w-4 h-4" />
         </Button>
@@ -216,6 +219,7 @@ const Projects = () => {
             <button
               onClick={() => setIsDialogOpen(false)}
               className="text-white hover:text-red-400 transition-colors"
+              aria-label="Close Video Dialog"
             >
               <X className="w-6 h-6" />
             </button>
@@ -247,6 +251,7 @@ const Projects = () => {
           <Button
             size="lg"
             className="bg-green-600 text-white border-2 border-black shadow-md flex items-center justify-center gap-2 py-2 px-4 hover:bg-green-500 hover:translate-y-0.5 hover:shadow-none transition-all"
+            aria-label="View More Projects"
             style={{ borderRadius: "0px" }}
           >
             View More Projects

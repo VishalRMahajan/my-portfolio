@@ -3,7 +3,7 @@ export const DATA = {
     name: "Vishal Mahajan",
     location: "Mumbai",
     Timezone: "GMT+5:30",
-    avatarSrc: "/VishalRMahajan.png",
+    avatarSrc: "/VishalRMahajan.webp",
     social: {
       GitHub: "https://github.com/VishalRMahajan",
       LinkedIn: "https://linkedin.com/in/VishalRMahajan",
@@ -42,7 +42,7 @@ export const DATA = {
       Skills: ["NodeJs", "Express"],
       location: "Remote",
       title: "Backend Developer Intern",
-      logoUrl: "/work-logo/tggt.png",
+      logoUrl: "/work-logo/tggt.webp",
       start: "May 2025",
       end: "Present",
       description: "Joined Just Now, Will update soon.",
