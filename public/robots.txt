@@ -7,3 +7,4 @@ Host: https://vishalrmahajan.in
 
 # Sitemaps
 Sitemap: https://vishalrmahajan.in/sitemap.xml
+Sitemap: https://vishalrmahajan.in/image-sitemap.xml

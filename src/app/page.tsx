@@ -7,6 +7,7 @@ import SkillsGrid from "@/components/skills-grid";
 import WorkExperience from "@/components/work-experience";
 import Projects from "@/components/projects";
 import NowPlayingCard from "@/components/NowPlayingCard";
+import GitHubStatsCard from "@/components/GithubStatusCard";
 
 const Section = ({
   id,
@@ -70,6 +71,9 @@ export default function Page() {
         </Section>
         <Section id="now-playing" title="What I'm Listening To">
           <NowPlayingCard />
+        </Section>
+        <Section id="now-playing" title="The GitHub Log">
+          <GitHubStatsCard />
         </Section>
       </div>
     </main>

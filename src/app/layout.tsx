@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     template: "%s | Vishal Mahajan",
   },
   description:
-    "Hey, I’m Vishal Mahajan aka VishalRMahajan. This is my little corner of the internet. Feel free to scroll through.",
+    "Hey, I’m Vishal Mahajan aka VishalRMahajan. This is my little corner of the internet - a place to explore my projects, work, and everything I’m building. Feel free to scroll through.",
   keywords: [
     "Vishal Mahajan",
     "Vishal R Mahajan",
