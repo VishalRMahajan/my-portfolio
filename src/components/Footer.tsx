@@ -59,7 +59,7 @@ export default function Footer() {
           className="block text-xs mt-2 underline cursor-pointer"
           onClick={() => setOpen(true)}
         >
-          Credits
+          Video Credits
         </span>
       </Text>
 
@@ -71,18 +71,9 @@ export default function Footer() {
             border: "2px solid #22c55e",
             boxShadow: "6px 6px 0 #000",
             borderRadius: "0px",
+            padding: "1rem",
           }}
         >
-          <Text
-            as="h4"
-            className="mb-2 text-lg text-white text-center"
-            style={{
-              color: "#22c55e",
-              textShadow: "2px 2px 0 #000",
-            }}
-          >
-            Credits
-          </Text>
           <Text
             className="text-white text-sm text-center"
             style={{

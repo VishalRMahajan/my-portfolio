@@ -107,7 +107,7 @@ const Projects = () => {
           transition={{ duration: 0.3 }}
         >
           <Card
-            className={`border-2 ${colors.border} ${colors.bg} backdrop-blur-sm transition-all hover:translate-y-[-2px] hover:shadow-lg shadow-black relative overflow-hidden shadow-xl`}
+            className={`border-2 ${colors.border} ${colors.bg} backdrop-blur-sm transition-all hover:translate-y-[-2px] hover:shadow-lg shadow-black relative overflow-hidden shadow-lg`}
           >
             <div
               className={`absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-${
@@ -116,12 +116,51 @@ const Projects = () => {
             ></div>
 
             <div className="p-4">
-              <Text
-                as="h4"
-                className={`font-bold text-lg ${colors.accent} font-mono tracking-wide`}
-              >
-                {project.title}
-              </Text>
+              <div className="flex flex-col lg:flex-row lg:justify-between lg:items-start mb-3">
+                <div className="flex-1">
+                  <Text
+                    as="h4"
+                    className={`font-bold text-lg ${colors.accent} font-mono tracking-wide`}
+                  >
+                    {project.title}
+                  </Text>
+                </div>
+                <div className="hidden lg:flex items-center gap-2 flex-shrink-0 mt-1">
+                  <a
+                    href={project.githubLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1 bg-gray-500 text-white px-2 py-1 text-xs border border-gray-500/30 hover:bg-gray-500/30 hover:text-white transition-colors cursor-pointer font-mono shadow-sm"
+                  >
+                    <Github className="w-3 h-3" />
+                    GitHub
+                  </a>
+
+                  {project.videosrc && (
+                    <button
+                      onClick={() => openVideoDialog(project)}
+                      className="inline-flex items-center gap-1 bg-red-500 text-white px-2 py-1 text-xs border border-red-500/30 hover:bg-red-500/30 hover:text-red-300 transition-colors cursor-pointer font-mono shadow-sm"
+                      aria-label="Watch Video"
+                    >
+                      <Play className="w-3 h-3" />
+                      Video
+                    </button>
+                  )}
+
+                  {project.deployed && (
+                    <a
+                      href={project.deployedlink}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1 bg-green-500 text-white px-2 py-1 text-xs border border-green-500/30 hover:bg-green-500/30 hover:text-green-300 transition-colors cursor-pointer font-mono shadow-sm"
+                    >
+                      <ExternalLink className="w-3 h-3" />
+                      Live
+                    </a>
+                  )}
+                </div>
+              </div>
+
               <Text className="text-gray-300 text-sm mt-1 font-mono">
                 {project.description}
               </Text>
@@ -139,7 +178,7 @@ const Projects = () => {
                 ))}
               </ul>
 
-              <div className="flex items-center gap-2 flex-wrap mt-4">
+              <div className="flex lg:hidden items-center gap-2 flex-wrap mt-4">
                 <a
                   href={project.githubLink}
                   target="_blank"
@@ -249,7 +288,7 @@ const Projects = () => {
           rel="noopener noreferrer"
         >
           <Button
-            size="lg"
+            size="sm"
             className="bg-green-600 text-white border-2 border-black shadow-md flex items-center justify-center gap-2 py-2 px-4 hover:bg-green-500 hover:translate-y-0.5 hover:shadow-none transition-all"
             aria-label="View More Projects"
             style={{ borderRadius: "0px" }}

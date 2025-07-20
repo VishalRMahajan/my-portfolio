@@ -1,29 +1,55 @@
 "use client";
 
-import React from "react";
-import { motion } from "framer-motion";
+import React, { useState, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { Card } from "@/components/retroui/Card";
 import { Text } from "@/components/retroui/Text";
+import { Button } from "@/components/retroui/Button";
 import { DATA } from "@/data";
 import { Badge } from "./retroui/Badge";
 import Image from "next/image";
+import { ArrowLeft, ArrowRight } from "lucide-react";
 
 const WorkExperience = () => {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [direction, setDirection] = useState<"left" | "right">("right");
+
+  const jobs = DATA.work;
+
   const skillColors: Record<string, { bg: string; text: string }> = {
     nodejs: { bg: "bg-green-600", text: "text-white" },
     express: { bg: "bg-gray-700", text: "text-white" },
   };
 
+  const goToPrevious = () => {
+    setDirection("left");
+    setCurrentIndex((prev) => (prev - 1 + jobs.length) % jobs.length);
+  };
+
+  const goToNext = () => {
+    setDirection("right");
+    setCurrentIndex((prev) => (prev + 1) % jobs.length);
+  };
+
+  useEffect(() => {
+    if (jobs.length <= 1) return;
+    const interval = setInterval(() => {
+      goToNext();
+    }, 8000);
+    return () => clearInterval(interval);
+  }, [currentIndex, jobs.length]);
+
+  const job = jobs[currentIndex];
+
   return (
-    <div className="space-y-8">
-      {DATA.work.map((job, index) => (
+    <div className="space-y-6">
+      <AnimatePresence mode="wait" initial={false}>
         <motion.div
-          key={`${job.company}-${index}`}
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: index * 0.1 }}
-          viewport={{ once: true }}
-          className="max-w-full"
+          key={currentIndex}
+          initial={{ opacity: 0, x: direction === "right" ? 100 : -100 }}
+          animate={{ opacity: 1, x: 0 }}
+          exit={{ opacity: 0, x: direction === "right" ? -100 : 100 }}
+          transition={{ duration: 0.3 }}
         >
           <Card className="overflow-hidden border-2 border-black bg-black/30 backdrop-blur-sm hover:translate-y-[-2px] transition-all w-full">
             <div className="flex flex-col p-4 sm:hidden">
@@ -65,7 +91,7 @@ const WorkExperience = () => {
                 </a>
               </div>
 
-              <div className="flex flex-col items-center gap-2 mb-3">
+              <div className="flex flex-col items-center gap-2 mb-4">
                 <div
                   className="px-3 py-1.5 bg-gray-800 border-2 border-black text-white text-sm font-bold rounded shadow-sm"
                   style={{ imageRendering: "pixelated" }}
@@ -86,12 +112,6 @@ const WorkExperience = () => {
                   </svg>
                   {job.location}
                 </Badge>
-              </div>
-
-              <div className="mb-4">
-                <Text className="text-gray-100 text-base text-center">
-                  {job.description}
-                </Text>
               </div>
 
               {job.Skills && job.Skills.length > 0 && (
@@ -146,7 +166,7 @@ const WorkExperience = () => {
               </div>
 
               <div className="flex-1">
-                <div className="flex flex-wrap justify-between items-start gap-2 mb-2">
+                <div className="flex flex-wrap justify-between items-start gap-2 mb-4">
                   <div>
                     <Text
                       as="h4"
@@ -190,14 +210,8 @@ const WorkExperience = () => {
                   </div>
                 </div>
 
-                <div className="mb-5">
-                  <Text className="text-gray-100 text-base">
-                    {job.description}
-                  </Text>
-                </div>
-
                 {job.Skills && job.Skills.length > 0 && (
-                  <div className="flex flex-wrap gap-2">
+                  <div className="flex flex-wrap gap-2 mt-[-10px]">
                     {job.Skills.map((skill, i) => {
                       const skillLower = skill.toLowerCase();
                       const colors = skillColors[skillLower] || {
@@ -228,7 +242,43 @@ const WorkExperience = () => {
             </div>
           </Card>
         </motion.div>
-      ))}
+      </AnimatePresence>
+
+      {jobs.length > 1 && (
+        <div className="flex justify-center items-center gap-4 mt-2">
+          <Button
+            onClick={goToPrevious}
+            variant="outline"
+            className="bg-white text-black border-white"
+            aria-label="Previous Experience"
+          >
+            <ArrowLeft className="w-4 h-4" />
+          </Button>
+          <div className="flex items-center gap-2">
+            {jobs.map((_, idx) => (
+              <span
+                key={idx}
+                className={`w-3 h-3 border-2 border-white ${
+                  idx === currentIndex ? "bg-white" : "bg-transparent"
+                } rounded-none`}
+                style={{
+                  display: "inline-block",
+                  boxShadow:
+                    idx === currentIndex ? "2px 2px 0 #000" : undefined,
+                }}
+              ></span>
+            ))}
+          </div>
+          <Button
+            onClick={goToNext}
+            variant="outline"
+            className="bg-white text-black border-white"
+            aria-label="Next Experience"
+          >
+            <ArrowRight className="w-4 h-4" />
+          </Button>
+        </div>
+      )}
     </div>
   );
 };

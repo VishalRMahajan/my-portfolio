@@ -110,7 +110,7 @@ export default function NowPlayingCard() {
       : 0;
 
   return (
-    <Card className="flex flex-col md:flex-row items-center gap-4 bg-black/70 border-green-400 border-2 shadow-lg px-4 py-5 w-full max-w-md md:max-w-2xl mx-auto">
+    <Card className="flex flex-col md:flex-row items-center gap-4 bg-black/70 border-green-400 border-2 shadow-lg px-4 py-5 w-full max-w-md md:max-w-3xl mx-auto">
       <div className="relative w-28 h-28 md:w-32 md:h-32 flex-shrink-0 rounded-full bg-gray-900 border-4 border-black overflow-hidden flex items-center justify-center">
         <div
           className={clsx(

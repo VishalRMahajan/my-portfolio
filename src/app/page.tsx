@@ -8,6 +8,7 @@ import WorkExperience from "@/components/work-experience";
 import Projects from "@/components/projects";
 import NowPlayingCard from "@/components/NowPlayingCard";
 import GitHubStatsCard from "@/components/GithubStatusCard";
+import BlogCard from "@/components/BlogCard";
 
 const Section = ({
   id,
@@ -29,7 +30,7 @@ const Section = ({
     <Text as="h3" className="font-bold mb-6 text-white text-shadow-pixel">
       {title}
     </Text>
-    {children}
+    <div className="w-full max-w-3xl mx-auto">{children}</div>
   </motion.section>
 );
 
@@ -69,11 +70,14 @@ export default function Page() {
         <Section id="projects" title="Stuff I've Built">
           <Projects />
         </Section>
-        <Section id="now-playing" title="What I'm Listening To">
-          <NowPlayingCard />
+        <Section id="blog" title="Stuff I Wrote">
+          <BlogCard />
         </Section>
         <Section id="now-playing" title="The GitHub Log">
           <GitHubStatsCard />
+        </Section>
+        <Section id="now-playing" title="What I'm Listening To">
+          <NowPlayingCard />
         </Section>
       </div>
     </main>
