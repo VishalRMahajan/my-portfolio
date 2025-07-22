@@ -298,22 +298,6 @@ const Hero = () => {
                 />
               </a>
               <a
-                href={DATA.hero.social.LeetCode}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="border-2 border-black p-1.5 shadow-md hover:translate-y-0.5 hover:shadow-none transition-all bg-white"
-                style={{ borderRadius: "0px" }}
-              >
-                <Image
-                  src="https://leetcode.com/favicon.ico"
-                  alt="LeetCode"
-                  width={16}
-                  height={16}
-                  className="w-7 h-7"
-                  style={{ imageRendering: "pixelated" }}
-                />
-              </a>
-              <a
                 href={DATA.hero.social.X}
                 target="_blank"
                 rel="noopener noreferrer"
@@ -341,7 +325,7 @@ const Hero = () => {
                   alt="Gmail"
                   width={16}
                   height={16}
-                  className="w-7 h-7"
+                  className="w-7 h-7 "
                   style={{ imageRendering: "pixelated" }}
                 />
               </a>
