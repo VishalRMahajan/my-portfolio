@@ -11,6 +11,7 @@ export const DATA = {
       Email: "mailto:me@vishalrmahajan.in",
       LeetCode: "https://leetcode.com/VishalRMahajan/",
       Resume: "https://resume.vishalrmahajan.in?src=portfolio",
+      Blog: "https://blog.vishalrmahajan.in"
     },
   },
   footer: {

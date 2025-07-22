@@ -345,6 +345,22 @@ const Hero = () => {
                   style={{ imageRendering: "pixelated" }}
                 />
               </a>
+              <a
+                href={DATA.hero.social.Blog}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="border-2 border-black p-1.5 shadow-md hover:translate-y-0.5 hover:shadow-none transition-all bg-[#15191c]"
+                style={{ borderRadius: "0px" }}
+              >
+                <Image
+                  src="https://skillicons.dev/icons?i=md"
+                  alt="LinkedIn"
+                  width={16}
+                  height={16}
+                  className="w-7 h-7"
+                  style={{ imageRendering: "pixelated" }}
+                />
+              </a>
             </motion.div>
 
             <motion.div
